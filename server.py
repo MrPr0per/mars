@@ -71,7 +71,7 @@ def page5():
             <div class="alert alert-warning" role="alert">Присоединяйся!</div>
           </body>
         </html>
-                '''
+        '''
 
 
 if __name__ == '__main__':

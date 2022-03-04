@@ -8,13 +8,12 @@ form.login_form {
     padding: 10px;
 }
 
-h1 {
+body {
     text-align: center;
-    color: #d22e3a
 }
 
-p {
-    text-align: center;
+h1 {
+    color: #d22e3a
 }
 
 p.small_text {

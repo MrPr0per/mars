@@ -194,5 +194,48 @@ def form_sample():
         return "<h1>Форма отправлена</h1>"
 
 
+@app.route('/choice/<planet_name>')
+def page6(planet_name):
+    if planet_name == 'Меркурий':
+        code = '''
+        <h1>почему вам стоит посетить Меркурий?</h1>
+        <p>если цены на газ слишком велики для вас, +427 °C на Меркурии не оставят вас равнодушным!</p>
+        <p>это замечательная, маленькая и уютная планета</p>
+        <p>замечательный вид на Солнце</p>
+        <p>отсутствует атмосфера, а значит нет и экологических проблем с грязным воздухом</p>
+        <p>отсутствует вода, а значит ни один океан не загрязнен</p>
+        <p>отсутствует жизнь, а значит ни один вид не вымер за всю историю этой прекрасной планеты</p>
+        <p>мы ждем вас на Меркурии - самой экологически чистой планете</p>
+        '''
+        # чорт, я устал все это писать
+    else:
+        code = f'''
+        <h1>почему вам стоит посетить {planet_name}?</h1>
+        <p>все мы любим сферические объекты, не так ли?</p>
+        <p>что ж, тогда вам наверняка понравится {planet_name}, ведь она имеет практически идеально сферическую форму</p>
+        <p>не важно, сколько лететь до этой планеты, с нашими криокамерами любое путешествие будет быстрым и комфортабельным</p>
+        <p>так же скорее всего на этой планете есть атмосфера</p>
+        <p class="small_text">(компания не несет ответственности за легкие колонистов в случае отсутствия или плохого качества атмосферы)</p>
+        <p>приятного путешествия на {planet_name}</p>
+        <p>именно на вас лежит будущее человечества!</p>
+        '''
+    return f'''<!doctype html>
+                <html lang="en">
+                  <head>
+                    <meta charset="utf-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+                   <link rel="stylesheet"
+                   href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+                   integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+                   crossorigin="anonymous">
+                   <link rel="stylesheet" type="text/css" href="{url_for('static', filename='css/style.css')}" />
+                    <title>{planet_name}</title>
+                  </head>
+                  <body>
+                  {code}
+                  </body>
+                </html>'''
+
+
 if __name__ == '__main__':
     app.run(port=8080, host='127.0.0.1')

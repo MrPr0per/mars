@@ -12,3 +12,11 @@ h1 {
     text-align: center;
     color: #d22e3a
 }
+
+p {
+    text-align: center;
+}
+
+p.small_text {
+    font-size: 5pt;
+}

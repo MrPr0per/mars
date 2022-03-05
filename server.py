@@ -312,6 +312,7 @@ def page9():
                         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
                         crossorigin="anonymous">
                         <link rel="stylesheet" type="text/css" href="{url_for('static', filename='css/style.css')}" />
+                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
                         <title>фото фото фото</title>
                       </head>
                       <body>
@@ -322,10 +323,10 @@ def page9():
                               <img src="{url_for('static', filename='img/panorama1.png')}" class="d-block w-100" alt="1">
                             </div>
                             <div class="carousel-item">
-                              <img src="{url_for('static', filename='img/panorama1.png')}" class="d-block w-100" alt="2">
+                              <img src="{url_for('static', filename='img/panorama2.png')}" class="d-block w-100" alt="2">
                             </div>
                             <div class="carousel-item">
-                              <img src="{url_for('static', filename='img/panorama1.png')}" class="d-block w-100" alt="3">
+                              <img src="{url_for('static', filename='img/panorama3.png')}" class="d-block w-100" alt="3">
                             </div>
                           </div>
                           <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">

@@ -1,4 +1,5 @@
-from flask import Flask, url_for, request
+from flask import Flask, url_for, request, render_template, redirect
+import os
 
 app = Flask(__name__)
 
@@ -300,46 +301,23 @@ def page8():
         return "Форма отправлена"
 
 
-@app.route('/carousel')
+@app.route('/carousel', methods=['POST', 'GET'])
 def page9():
-    return f'''<!doctype html>
-                    <html lang="en">
-                      <head>
-                        <meta charset="utf-8">
-                        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-                        <link rel="stylesheet"
-                        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-                        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-                        crossorigin="anonymous">
-                        <link rel="stylesheet" type="text/css" href="{url_for('static', filename='css/style.css')}" />
-                        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-                        <title>фото фото фото</title>
-                      </head>
-                      <body>
-                        <h1>пейзажи марса</h1>
-                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                          <div class="carousel-inner">
-                            <div class="carousel-item active">
-                              <img src="{url_for('static', filename='img/panorama1.png')}" class="d-block w-100" alt="1">
-                            </div>
-                            <div class="carousel-item">
-                              <img src="{url_for('static', filename='img/panorama2.png')}" class="d-block w-100" alt="2">
-                            </div>
-                            <div class="carousel-item">
-                              <img src="{url_for('static', filename='img/panorama3.png')}" class="d-block w-100" alt="3">
-                            </div>
-                          </div>
-                          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                          </button>
-                          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                          </button>
-                        </div>
-                      </body>
-                    </html>'''
+    if request.method == 'GET':
+        urls = []
+        for name in os.listdir('static/img/panoramas/'):
+            urls.append(url_for('static', filename=f'img/panoramas/{name}'))
+        url_for('static', filename='img/panorama1.png')
+        return render_template('carousel.html', urls_list=urls)
+    elif request.method == 'POST':
+        f = request.files['file']
+        if f.filename != '':  # проверка на то, не отправили ли пустую картинку
+            # чем кстати оличается f.name от f.filename ?
+            # ладно
+            f.name = f'panorama{len(list(os.listdir("static/img/panoramas/"))) + 1}.png'
+            f.save(f'static/img/panoramas/{f.name}')
+
+        return redirect("/carousel")
 
 
 if __name__ == '__main__':
